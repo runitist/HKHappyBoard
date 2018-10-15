@@ -36,7 +36,6 @@ public class BoardServlet extends HttpServlet {
 		request.setAttribute("tsps", tsps);
 
 		RequestDispatcher rd = request.getRequestDispatcher("VIEW/Template/Template.jsp");
-		System.out.println("보드");
 		rd.forward(request, response);
 	}
 

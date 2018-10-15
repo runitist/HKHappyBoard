@@ -3,16 +3,13 @@
 	pageEncoding="UTF-8"%>
 <%
 	String wps = "../TemplateF/Home.jsp";//템플릿 기본값
-	String wpsn = "Happy Board";
-	TempSectionPageStat tsps = null;
-	if (request.getAttribute("tsps") != null) {
-		tsps = (TempSectionPageStat) request.getAttribute("tsps");
-		if (tsps.getWps().equals("")) {
-			wps = tsps.getWps();
-		} else if (tsps.getWpsn().equals("")) {
-			wpsn = tsps.getWpsn();
-		}
+	String wpsn = "Happy Board"; // 헤더 타이틀 기본값
+	TempSectionPageStat tsps;
+	if(request.getAttribute("tsps")!=null){
+		tsps = (TempSectionPageStat)request.getAttribute("tsps");
 	}
+	wpsn = tsps.getWpsn();
+	
 %>
 <!DOCTYPE html>
 <html>
