@@ -4,7 +4,7 @@
 <%
 	String wps = "../TemplateF/Home.jsp";//템플릿 기본값
 	String wpsn = "Happy Board";
-	TempSectionPageStat tsps=null;
+	TempSectionPageStat tsps = null;
 	if (request.getAttribute("tsps") != null) {
 		tsps = (TempSectionPageStat) request.getAttribute("tsps");
 		if (tsps.getWps().equals("")) {
