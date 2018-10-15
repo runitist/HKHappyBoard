@@ -4,12 +4,12 @@
 <%
 	String wps = "../TemplateF/Home.jsp";//템플릿 기본값
 	String wpsn = "Happy Board"; // 헤더 타이틀 기본값
-	TempSectionPageStat tsps;
+	TempSectionPageStat tsps = null;
 	if(request.getAttribute("tsps")!=null){
 		tsps = (TempSectionPageStat)request.getAttribute("tsps");
+		wps = "../TemplateF/"+tsps.getWps()+".jsp";
+		wpsn = tsps.getWpsn();
 	}
-	wpsn = tsps.getWpsn();
-	
 %>
 <!DOCTYPE html>
 <html>
