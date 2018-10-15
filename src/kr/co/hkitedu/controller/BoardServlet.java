@@ -13,6 +13,8 @@ import kr.co.hkitedu.model.DTO.TempSectionPageStat;
 
 @WebServlet("/BoardServlet")
 public class BoardServlet extends HttpServlet {
+	// 게시판 뷰단으로 이동하는 컨트롤러
+	//페이지 정보 + 게시판 종류 + 게시판 정보 객체 필요.
 	private static final long serialVersionUID = 1L;
 
 	public BoardServlet() {

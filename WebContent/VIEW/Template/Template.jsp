@@ -2,12 +2,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+	//TemplateF폴더의 조각 파일들을 통합하는 템플릿 페이지
+%>
+<%
 	String wps = "../TemplateF/Home.jsp";//템플릿 기본값
 	String wpsn = "Happy Board"; // 헤더 타이틀 기본값
 	TempSectionPageStat tsps = null;
-	if(request.getAttribute("tsps")!=null){
-		tsps = (TempSectionPageStat)request.getAttribute("tsps");
-		wps = "../TemplateF/"+tsps.getWps()+".jsp";
+	if (request.getAttribute("tsps") != null) {
+		tsps = (TempSectionPageStat) request.getAttribute("tsps");
+		wps = "../TemplateF/" + tsps.getWps() + ".jsp";
 		wpsn = tsps.getWpsn();
 	}
 %>
@@ -25,6 +28,12 @@
 			<header>
 				<h1><%=wpsn%></h1>
 			</header>
+			<div class="login">
+				<button
+					onclick="location.href='<%=request.getContextPath()%>/Login.do'">로그인</button>
+				<button
+					onclick="location.href='<%=request.getContextPath()%>/Signup.do'">회원가입</button>
+			</div>
 		</div>
 		<nav>
 			<ul class="navul1">

@@ -19,6 +19,7 @@ html, body {
 .top {
 	height: 10%;
 	width: 100%;
+	position: relative;
 }
 
 header {
@@ -28,6 +29,14 @@ header {
 	align-items: center;
 	justify-content: center;
 	text-shadow: 2px 2px 3px gray;
+}
+
+.login {
+	border: 1px solid black;
+	padding: 3px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
 }
 
 nav {
@@ -99,6 +108,10 @@ section {
 	width: 100%;
 }
 
+section>div {
+	height: 100%;
+	width: 100%;
+}
 
 footer {
 	height: 5%;
@@ -110,11 +123,14 @@ footer {
 	justify-content: center;
 }
 
-.home{
-	height: 100%;
-	width:100%;
+.home {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
+.login {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
