@@ -79,12 +79,21 @@ public class DAO_OracleQuery {
 		Connection conn = DBConnector.getConn();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+		int minRow = Integer.parseInt(wbp);
 
 		try {
-			String sql = "select * from(select * from " + wbq + 
-					" order by bid) where rownum <= " + PGMAX;
+			String sql = "select * from"
+					+ "(select * from"
+					+ "(select rownum as rnum, bid, btitle, bcontent, bregdate, bupdate, pw, buser "
+					+ "from "
+					+ wbq
+					+ " order by bid) "
+					+ "where ROWNUM <=?)"
+					+ "where rnum>=?";
 
 			ps = conn.prepareStatement(sql);
+			ps.setInt(1, PGMAX);
+			ps.setInt(2, minRow);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				BoardVO bv = new BoardVO();
