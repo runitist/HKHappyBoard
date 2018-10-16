@@ -26,9 +26,9 @@
 <div class="board">
 	<table class="boardtable">
 		<tr>
-			<th>게시번호</th>
-			<th>게시글</th>
-			<th>게시일</th>
+			<th class="borderbid">게시번호</th>
+			<th class="borderbtitle">게시글</th>
+			<th class="borderbregdate">게시일</th>
 		</tr>
 		<%
 			if (bvl != null && bvl.size() != 0) {
@@ -42,11 +42,12 @@
 		<%
 			}
 			} else {
+				pgn = 1;
 		%>
 		<tr>
-			<td class="borderbid">게시글이</td>
-			<td class="borderbtitle">없습니다.</td>
-			<td class="borderbregdate">####/##/##(####/##/##)</td>
+			<td>게시글이</td>
+			<td>없습니다.</td>
+			<td>####/##/##(####/##/##)</td>
 		</tr>
 		<%
 			}
@@ -56,10 +57,10 @@
 	<div class="boarderbtn">
 		<div class="page">
 			<%
-				for (int i = 0; i <= pgn; i++) {
+				for (int i = 1; i <= pgn; i++) {
 			%>
 			<a
-				href="<%=request.getContextPath()%>/Board.do?wb=<%=wb%>&wbp=<%=(i + 1)%>"><%=(i + 1)%></a>
+				href="<%=request.getContextPath()%>/Board.do?wb=<%=wb%>&wbp=<%=(i)%>"><%=(i)%></a>
 			<%
 				if (i != pgn) {
 			%>

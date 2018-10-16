@@ -180,3 +180,6 @@ footer {
 	bottom: 0;
 	right: 1.5vw;
 }
+.boardtable tr{
+	height: 3.5vh;
+}

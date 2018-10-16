@@ -54,14 +54,14 @@ public class BoardServlet extends HttpServlet {
 			wbq = "h_board3";
 		}
 		ctr = DAO_OracleQuery.getCountAllRows(wbq);
-		pgn = (int)Math.ceil(((double)ctr)/PGMAX);
-		
-		if(request.getParameter("wbp") != null) {
+		pgn = (int) Math.ceil(((double) ctr) / PGMAX);
+
+		if (request.getParameter("wbp") != null) {
 			wbp = request.getParameter("wbp");
 		}
-		
-		bvl = DAO_OracleQuery.getBvl(wbq);
-		
+
+		bvl = DAO_OracleQuery.getBvl(wbq, wbp, PGMAX);
+
 		request.setAttribute("bvl", bvl);
 		request.setAttribute("tsps", tsps);
 		request.setAttribute("pgn", pgn);

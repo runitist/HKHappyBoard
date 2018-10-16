@@ -15,16 +15,19 @@ public class DAO_OracleQuery {
 		try {
 			if (rs != null)
 				rs.close();
+			System.out.println("rs클로즈");
 		} catch (Exception e) {
 		}
 		try {
 			if (ps != null)
 				ps.close();
+			System.out.println("ps클로즈");
 		} catch (Exception e) {
 		}
 		try {
 			if (conn != null)
 				conn.close();
+			System.out.println("conn클로즈");
 		} catch (Exception e) {
 		}
 	}
@@ -34,11 +37,13 @@ public class DAO_OracleQuery {
 		try {
 			if (ps != null)
 				ps.close();
+			System.out.println("ps클로즈");
 		} catch (Exception e) {
 		}
 		try {
 			if (conn != null)
 				conn.close();
+			System.out.println("conn클로즈");
 		} catch (Exception e) {
 		}
 	}
@@ -50,7 +55,7 @@ public class DAO_OracleQuery {
 		ResultSet rs = null;
 
 		try {
-			String sql = "select count(*) as ca from "+wbq;
+			String sql = "select count(*) as ca from " + wbq;
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -66,15 +71,18 @@ public class DAO_OracleQuery {
 		return countAll;
 	}
 
-	public static ArrayList<BoardVO> getBvl(String wbq) {
+	public static ArrayList<BoardVO> getBvl(String wbq, String wbp, int PGMAX) {
 		// DB정보를 가져오는 리스트를 작성
+		// wbp는 해당 페이지의 보드 페이지값.
+		// PGMAX는 한 페이지당 보드 로우의 최대개수
 		ArrayList<BoardVO> bvl = new ArrayList<BoardVO>();
 		Connection conn = DBConnector.getConn();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
 		try {
-			String sql = "(select * from " + wbq + ") order by bid";
+			String sql = "select * from(select * from " + wbq + 
+					" order by bid) where rownum <= " + PGMAX;
 
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
