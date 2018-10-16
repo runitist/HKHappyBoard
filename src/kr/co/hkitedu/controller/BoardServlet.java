@@ -35,7 +35,6 @@ public class BoardServlet extends HttpServlet {
 		ArrayList<BoardVO> bvl = null;
 		int ctr = 1;// 해당 보드 전체 로우수
 		int pgn = 2;// 페이지 수
-		DAO_OracleQuery dq = new DAO_OracleQuery();
 
 		if (request.getParameter("wb") != null) {
 			wb = request.getParameter("wb");
@@ -56,7 +55,13 @@ public class BoardServlet extends HttpServlet {
 		}
 		ctr = DAO_OracleQuery.getCountAllRows(wbq);
 		pgn = (int)Math.ceil(((double)ctr)/PGMAX);
-
+		
+		if(request.getParameter("wbp") != null) {
+			wbp = request.getParameter("wbp");
+		}
+		
+		bvl = DAO_OracleQuery.getBvl(wbq);
+		
 		request.setAttribute("bvl", bvl);
 		request.setAttribute("tsps", tsps);
 		request.setAttribute("pgn", pgn);
