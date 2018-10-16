@@ -26,15 +26,36 @@ public class BoardServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		TempSectionPageStat tsps = new TempSectionPageStat();
-		String wb = request.getParameter("wb");//무슨 보드인가?
-		String wbq = "";// 쿼리문으로 넘겨줄 보드명
+		System.out.println("보드 서블릿 진입 완료");
+		String wb = "1";// 무슨 보드인가?
+		TempSectionPageStat tsps = new TempSectionPageStat();// 템플릿으로 넘겨줄 페이지 자료
+		String wbq = "h_board1";// 쿼리문으로 넘겨줄 보드명
 		String wbp = "1";// 보드 페이지. 기본값은 1.
-		final int pgmax = 20;//페이지 최대 로우개수
+		final int pgmax = 20;// 페이지 최대 로우개수
 		ArrayList<BoardVO> bvl = null;
-		int ctr = 0;//해당 보드 전체 로우수
-		int pgn = 0;
-		
+		int ctr = 1;// 해당 보드 전체 로우수
+		int pgn = 2;// 페이지 수
+		DAO_OracleQuery dq = new DAO_OracleQuery();
+
+		if (request.getParameter("wb") != null) {
+			wb = request.getParameter("wb");
+		} // wb 요청을 받음.
+
+		if (wb.equals("1")) {
+			tsps.setWps("Board");
+			tsps.setWpsn("유머 게시판");
+			wbq = "h_board1";
+		} else if (wb.equals("2")) {
+			tsps.setWps("Board");
+			tsps.setWpsn("학습 게시판");
+			wbq = "h_board2";
+		} else if (wb.equals("3")) {
+			tsps.setWps("Board");
+			tsps.setWpsn("자유 게시판");
+			wbq = "h_board3";
+		}
+		ctr = DAO_OracleQuery.getCountAllRows(wbq);
+
 		request.setAttribute("bvl", bvl);
 		request.setAttribute("tsps", tsps);
 		request.setAttribute("pgn", pgn);

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.hkitedu.model.DAO.DAO_OracleQuery;
+import kr.co.hkitedu.model.DAO.DBConnector;
 import kr.co.hkitedu.model.DTO.TempSectionPageStat;
 
 @WebServlet("*.do")
@@ -29,6 +31,7 @@ public class FrontController extends HttpServlet {
 		String ServletID = reqURI.substring(ctxPath.length() + 1);//URI에서 경로를 뺌.
 		System.out.println(ServletID);// ex : Home.do
 		RequestDispatcher rd;
+		DBConnector.getConn();
 		
 		//여기서부터 아래로, 주소창으로 들어온 요청을 받아들여 각자 서블릿으로 분류함.
 		if (ServletID.equals("Home.do")) {
