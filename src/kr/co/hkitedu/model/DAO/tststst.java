@@ -4,7 +4,7 @@ public class tststst {
 
 	public static void main(String[] args) {
 		//쿼리 테스트 임시 클래스
-		DBConnector.getConn();
+		System.out.println(DAO_OracleQuery.getCountAllRows("H_board1"));
 
 	}
 
