@@ -56,9 +56,9 @@
 	<div class="boarderbtn">
 		<div class="page">
 			<%
-				for (int i = 1; i <= pgn; i++) {
+				for (int i = 0; i <= pgn; i++) {
 			%>
-			<a href="<%=request.getContextPath()%>/Board.do?wb=<%=wb%>"><%=i%></a>
+			<a href="<%=request.getContextPath()%>/Board.do?wb=<%=wb%>"><%=(i + 1)%></a>
 			<%
 				if (i != pgn) {
 			%>

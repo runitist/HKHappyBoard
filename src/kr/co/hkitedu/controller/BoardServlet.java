@@ -31,7 +31,7 @@ public class BoardServlet extends HttpServlet {
 		TempSectionPageStat tsps = new TempSectionPageStat();// 템플릿으로 넘겨줄 페이지 자료
 		String wbq = "h_board1";// 쿼리문으로 넘겨줄 보드명
 		String wbp = "1";// 보드 페이지. 기본값은 1.
-		final int pgmax = 20;// 페이지 최대 로우개수
+		final int PGMAX = 20;// 페이지 최대 로우개수
 		ArrayList<BoardVO> bvl = null;
 		int ctr = 1;// 해당 보드 전체 로우수
 		int pgn = 2;// 페이지 수
@@ -55,6 +55,7 @@ public class BoardServlet extends HttpServlet {
 			wbq = "h_board3";
 		}
 		ctr = DAO_OracleQuery.getCountAllRows(wbq);
+		pgn = (int)Math.ceil(((double)ctr)/PGMAX);
 
 		request.setAttribute("bvl", bvl);
 		request.setAttribute("tsps", tsps);
