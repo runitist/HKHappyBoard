@@ -79,20 +79,19 @@ public class DAO_OracleQuery {
 		Connection conn = DBConnector.getConn();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		int minRow = Integer.parseInt(wbp);
+		int minRow = 1;
+		for (int i = 1; i < Integer.parseInt(wbp); i++) {
+			minRow += 20;
+		}
+		int maxRow = minRow + PGMAX - 1;
 
 		try {
-			String sql = "select * from"
-					+ "(select * from"
-					+ "(select rownum as rnum, bid, btitle, bcontent, bregdate, bupdate, pw, buser "
-					+ "from "
-					+ wbq
-					+ " order by bid) "
-					+ "where ROWNUM <=?)"
-					+ "where rnum>=?";
+			String sql = "select * from "
+					+ " (select rownum as rnum, bid, btitle, bcontent, bregdate, bupdate, pw, buser from"
+					+ " (select * " + "from " + wbq + " order by bid) " + "where ROWNUM <=?)" + "where rnum>=?";
 
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, PGMAX);
+			ps.setInt(1, maxRow);
 			ps.setInt(2, minRow);
 			rs = ps.executeQuery();
 			while (rs.next()) {
